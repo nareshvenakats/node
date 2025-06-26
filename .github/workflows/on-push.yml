@@ -6,6 +6,9 @@ on:
       - main
       - development
       - production
+      - testing
+
+
 
 jobs:
   say-hello:
