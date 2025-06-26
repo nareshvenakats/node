@@ -8,8 +8,6 @@ on:
       - production
       - testing
 
-
-
 jobs:
   say-hello:
     runs-on: ubuntu-latest
@@ -17,5 +15,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Say Hellon
+      - name: Say Hello
         run: echo "🚀 Code was pushed! Hello from GitHub Actions"
+
+      - name: Docker Login
+        env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: |
+          echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_USERNAME" --password-stdin
+          if [ $? -eq 0 ]; then
+            echo "✅ Docker login successful"
+          else
+            echo "❌ Docker login failed"
+            exit 1
+          fi
