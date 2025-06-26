@@ -14,5 +14,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Say Hello
+      - name: Say Hellon
         run: echo "🚀 Code was pushed! Hello from GitHub Actions"
